@@ -1,0 +1,41 @@
+{
+  "name": "erabasecsvCSV (WSL Container)",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "."
+  },
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+  "workspaceFolder": "/workspace",
+  "containerUser": "root",
+  "remoteUser": "node",
+  "overrideCommand": false,
+  "init": true,
+  // Temporarily disabled until wslc supports --cap-add / NET_ADMIN.
+  // "runArgs": [
+  //   "--cap-add=NET_ADMIN",
+  //   "--cap-add=NET_RAW"
+  // ],
+  "containerEnv": {
+    "TZ": "Asia/Tokyo",
+    "OLLAMA_HOST": "http://192.168.0.12:11434",
+    "CLAUDE_CONFIG_DIR": "/home/node/.claude"
+  },
+  "mounts": [
+    "source=erabasecsv-codex,target=/home/node/.codex,type=volume",
+    "source=erabasecsv-npm,target=/home/node/.npm,type=volume",
+    "source=erabasecsv-pnpm-store,target=/home/node/.local/share/pnpm/store,type=volume",
+    "source=erabasecsv-antigravity,target=/home/node/.gemini,type=volume",
+    // .claude
+    "source=claude-config-${devcontainerId},target=/home/node/.claude,type=volume"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "openai.chatgpt"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  }
+}
