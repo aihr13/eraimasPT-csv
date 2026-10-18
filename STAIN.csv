@@ -1,0 +1,16 @@
+﻿0,口
+1,手
+2,Ｃ
+3,Ｖ
+4,Ａ
+5,Ｂ
+6,膣内
+;-----------------------------
+; eracustom
+; STAIN:TARGET:口 & 1 <Ｖ>
+; STAIN:TARGET:口 & 2 <Ｐ>
+; STAIN:TARGET:口 & 4 <精>
+; STAIN:TARGET:口 & 8 <Ａ>
+; 
+; STAIN:TARGET:口 |= STAIN:PLAYER:口
+; STAIN:PLAYER:口 |= STAIN:TARGET:口
