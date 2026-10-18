@@ -46,6 +46,8 @@ def plan(root, list_path):
             raise ValueError('列は「キャラ名,変更後ID」にしてください')
         for row in reader:
             name = row['キャラ名']
+            if name == 'ex' and not row.get('変更後ID'):
+                continue
             if name in seen:
                 raise ValueError(f'キャラ名が重複: {name}')
             seen.add(name)
